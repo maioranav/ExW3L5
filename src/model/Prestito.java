@@ -42,11 +42,10 @@ public class Prestito implements Serializable {
 		
 	}
 
-	public Prestito(Pubblicazione pubb, Utente user, LocalDate dataprestito2, LocalDate restprevista2) {
+	public Prestito(Pubblicazione pubb, Utente user, LocalDate dataprestito2) {
 		this.setPubblicazione(pubb);
 		this.setUtente(user);
 		this.setDataprestito(dataprestito2);
-		this.setResteffettiva(restprevista2);
 	}
 
 	public Long getId() {
@@ -120,10 +119,9 @@ public class Prestito implements Serializable {
 		int day = Main.scan.nextInt();
 		Main.scan.nextLine();
 		LocalDate dataprestito = LocalDate.of(year, month, day);
-		LocalDate restprevista = dataprestito.plusDays(30);
 		while (true) {
 			try {
-				return new Prestito(pubb, user, dataprestito, restprevista);
+				return new Prestito(pubb, user, dataprestito);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(">> Inserisci il numero di tessera");
