@@ -130,6 +130,24 @@ public class Menu {
 	                	Main.scan.nextLine();
                         Main.addPrestito(Prestito.newPrestito());	                	
 	                }
+	                case 11 -> {
+	                    System.out.print("\n\t >> ELENCO PRESTITI PER TESSERA: ");
+	                     Main.scan.nextLine();
+	                   long tessera = Main.scan.nextLong();
+	                   List<Prestito> prest = Main.findByTessera(tessera);
+	                    if (prest.size() > 0) {
+	                    	prest.forEach(el -> System.out.println(el.toString()));
+	                    } else {
+	                        System.out.println("\n\tNessun prestito per questo numero di tessera.");
+	                    }
+	                    System.out.print("\n");
+	                }
+	                case 12 -> {
+	                    System.out.println("\n\t >> MOSTRO I PRESTITI SCADUTI O NON RICONSEGNATI");
+	                    List<Prestito> prestiti = Main.findScaduti();
+	                    prestiti.forEach(pr -> System.out.println(pr));
+	                    System.out.println("\t> Totale prestiti scaduti o da riconsegnare: " + prestiti.size() + "\n");
+	                }
 	                case 0 -> {
 	                    System.out.println("\nQuesto programma è stato sviluppato da Vincenzo Maiorana");
 	                    System.out.println("\nPer ulteriori informazioni visita https://www.vincenzomaiorana.it");

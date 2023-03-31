@@ -111,5 +111,19 @@ public class Main {
 		em.getTransaction().commit();
 		System.out.println("Prestito aggiunto al DB");
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<Prestito> findByTessera(Long tessera) {
+		Utente u = getUserByTessera(tessera);
+		Query q = em.createNamedQuery("Prestito.findByTessera");
+		q.setParameter("tessera", u);
+		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<Prestito> findScaduti() {
+		Query q = em.createNamedQuery("Prestito.findScaduti");
+		return q.getResultList();
+	}
 
 }

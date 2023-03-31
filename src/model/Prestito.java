@@ -18,6 +18,8 @@ import controller.Main;
 @Entity
 @Table(name = "prestiti")
 @NamedQuery(name = "Prestito.findAll", query = "SELECT pr FROM Prestito pr")
+@NamedQuery(name = "Prestito.findByTessera", query = "SELECT pr FROM Prestito pr WHERE pr.utente = :tessera")
+@NamedQuery(name = "Prestito.findScaduti", query = "SELECT pr FROM Prestito pr WHERE pr.resteffettiva IS NULL OR pr.restprevista < current_date")
 public class Prestito implements Serializable {
 
 	@Id
@@ -99,7 +101,7 @@ public class Prestito implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Prestito [id=" + id + ", utente=" + utente + ", pubblicazione=" + pubblicazione + ", dataprestito="
+		return "Prestito [id=" + id + ", utente=" + utente.getName() + " " + utente.getSurname() + " (" + utente.getTessera() + "), pubblicazione=" + pubblicazione + ", dataprestito="
 				+ dataprestito + ", restprevista=" + restprevista + ", resteffettiva=" + resteffettiva + "]";
 	}
 
