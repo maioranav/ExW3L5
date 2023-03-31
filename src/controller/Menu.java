@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.PersistenceException;
 
 import model.Libro;
+import model.Prestito;
 import model.Pubblicazione;
 import model.Rivista;
 import model.Utente;
@@ -124,6 +125,10 @@ public class Menu {
 	                    List<Utente> users = Main.findAllUsers();
 	                    users.forEach(a -> System.out.println(a));
 	                    System.out.println("\t> Totale utenti registrati: " + users.size() + "\n");
+	                }
+	                case 10 -> {
+	                	Main.scan.nextLine();
+                        Main.addPrestito(Prestito.newPrestito());	                	
 	                }
 	                case 0 -> {
 	                    System.out.println("\nQuesto programma è stato sviluppato da Vincenzo Maiorana");

@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import model.Prestito;
 import model.Pubblicazione;
 import model.Utente;
 import utils.JpaUtil;
@@ -95,6 +96,20 @@ public class Main {
 		em.persist(u);
 		em.getTransaction().commit();
 		System.out.println("Utente aggiunto al DB");
+	}
+	
+	public static Utente getUserByTessera(Long tessera) throws PersistenceException {
+		em.getTransaction().begin();
+		Utente u = em.find(Utente.class, tessera);
+		em.getTransaction().commit();
+		return u;
+	}
+	
+	public static void addPrestito(Prestito pr) throws PersistenceException {
+		em.getTransaction().begin();
+		em.persist(pr);
+		em.getTransaction().commit();
+		System.out.println("Prestito aggiunto al DB");
 	}
 
 }
