@@ -9,6 +9,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import model.Pubblicazione;
+import model.Utente;
 import utils.JpaUtil;
 
 public class Main {
@@ -81,6 +82,19 @@ public class Main {
 		em.remove(p);
 		em.getTransaction().commit();
 		System.out.println("Pubblicazione eliminata");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<Utente> findAllUsers() {
+		Query q = em.createNamedQuery("Utente.findAll");
+		return q.getResultList();
+	}
+	
+	public static void addUser(Utente u) throws PersistenceException {
+		em.getTransaction().begin();
+		em.persist(u);
+		em.getTransaction().commit();
+		System.out.println("Utente aggiunto al DB");
 	}
 
 }
